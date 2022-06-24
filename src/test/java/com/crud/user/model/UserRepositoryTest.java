@@ -15,7 +15,7 @@ public class UserRepositoryTest {
     private UserRepository userRepository;
 
     @Test
-    void shouldBeAbleToSaveUser() {
+    void shouldBeAbleToSaveAndGetUserDetails() {
         User ironman = new User(1, "ironman", 21);
 
         userRepository.save(ironman);
