@@ -23,4 +23,16 @@ public class UserRepositoryTest {
         assertEquals(ironman.getName(), user.getName());
         assertEquals(ironman.getAge(), user.getAge());
     }
+
+    @Test
+    void shouldBeAbleToUpdateUser() {
+        User updatedIronman = new User(1, "ironman", 31);
+        userRepository.save(updatedIronman);
+
+        User user = userRepository.findById(1).get();
+
+        assertEquals(updatedIronman.getId(), user.getId());
+        assertEquals(updatedIronman.getName(), user.getName());
+        assertEquals(updatedIronman.getAge(), user.getAge());
+    }
 }
