@@ -39,6 +39,13 @@ public class UserServiceTest {
     }
 
     @Test
+    void shouldBeAbleToCallSaveMethodOfUserRepositoryToUpdateUserDetails() {
+        User ironman = new User(1, "ironman", 32);
+        userService.update(ironman);
+        verify(userRepository, times(1)).save(ironman);
+    }
+
+    @Test
     void shouldBeAbleToCallDeleteMethodOfUserRepository() {
         userService.deleteUserById(1);
         verify(userRepository, times(1)).deleteById(1);
