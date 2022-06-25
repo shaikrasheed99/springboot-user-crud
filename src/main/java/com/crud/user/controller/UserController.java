@@ -30,4 +30,10 @@ public class UserController {
         User user = userService.getUserById(userId);
         return ResponseEntity.status(OK).body(user);
     }
+
+    @PutMapping("/users/{userId}")
+    public ResponseEntity<?> update(@RequestBody User user) {
+        User updatedUser = userService.update(user);
+        return ResponseEntity.status(OK).body(updatedUser);
+    }
 }
