@@ -72,4 +72,12 @@ public class UserControllerTest {
         result.andExpect(status().isOk())
                 .andDo(print());
     }
+
+    @Test
+    void shouldBeAbleToDeleteUserByUserId() throws Exception {
+        ResultActions result = mockMvc.perform(delete("/users/{userId}", 1));
+
+        result.andExpect(status().isOk())
+                .andDo(print());
+    }
 }
