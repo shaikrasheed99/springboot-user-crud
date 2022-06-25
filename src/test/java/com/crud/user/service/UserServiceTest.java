@@ -23,4 +23,10 @@ public class UserServiceTest {
         userService.getUserById(1);
         verify(userRepository, times(1)).findById(1);
     }
+
+    @Test
+    void shouldBeAbleToCallFindAllMethodOfUserRepository() {
+        userService.getAllUsers();
+        verify(userRepository, times(1)).findAll();
+    }
 }

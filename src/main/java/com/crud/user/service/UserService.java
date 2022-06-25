@@ -5,10 +5,12 @@ import com.crud.user.model.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     public UserService(UserRepository userRepository) {
@@ -23,5 +25,9 @@ public class UserService {
             user = null;
         }
         return user;
+    }
+
+    public List<User> getAllUsers() {
+        return (List<User>) userRepository.findAll();
     }
 }
