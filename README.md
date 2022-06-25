@@ -14,74 +14,74 @@
 
 * Request
 ```json
-    POST /users 
-    Host: localhost:3000
-    Content-Type: application/json
-    {
-        "id": 1,
-        "name": "ironman",
-        "age": 21,
-    }
+POST /users 
+Host: localhost:3000
+Content-Type: application/json
+{
+    "id": 1,
+    "name": "ironman",
+    "age": 21,
+}
 ```
 * Response
 ```json
-    {
-        "id": 1,
-        "name": "ironman",
-        "age": 21,
-    }
+{
+    "id": 1,
+    "name": "ironman",
+    "age": 21,
+}
 ```
 
 ### Get User details by user id
 
 * Request
 ```json
-    GET /users/{1}
-    Host: localhost:3000
+GET /users/{1}
+Host: localhost:3000
 ```
 * Response
 ```json
-    {
-        "id": 1,
-        "name": "ironman",
-        "age": 21,
-    }
+{
+    "id": 1,
+    "name": "ironman",
+    "age": 21,
+}
 ```
 
 ### Update User details
 
 * Request
 ```json
-    PUT /users/{1}
-    Host: localhost:3000
-    Content-Type: application/json
-    {
-        "id": 1,
-        "name": "ironman",
-        "age": 29,
-    }
+PUT /users/{1}
+Host: localhost:3000
+Content-Type: application/json
+{
+    "id": 1,
+    "name": "ironman",
+    "age": 29,
+}
 ```
 * Response
 ```json
-    {
-        "id": 1,
-        "name": "ironman",
-        "age": 29,
-    }
+{
+    "id": 1,
+    "name": "ironman",
+    "age": 29,
+}
 ```
 
 ### Delete a User by user id
 
 * Request
 ```json
-    DELETE /users/{1} 
-    Host: localhost:3000
+DELETE /users/{1} 
+Host: localhost:3000
 ```
 * Response
 ```json
-    {
-        "id": 1,
-        "name": "ironman",
-        "age": 21,
-    }
+{
+    "id": 1,
+    "name": "ironman",
+    "age": 21,
+}
 ```
