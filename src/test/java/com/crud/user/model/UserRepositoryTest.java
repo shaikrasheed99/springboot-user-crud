@@ -1,5 +1,7 @@
 package com.crud.user.model;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,11 +16,16 @@ public class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
 
+    private User ironman = null;
+
+    @BeforeEach
+    void init() {
+        ironman = new User(1, "ironman", 21);
+        userRepository.save(ironman);
+    }
+
     @Test
     void shouldBeAbleToSaveAndGetUserDetails() {
-        User ironman = new User(1, "ironman", 21);
-
-        userRepository.save(ironman);
         User user = userRepository.findById(1).get();
 
         assertEquals(ironman.getId(), user.getId());
@@ -46,5 +53,10 @@ public class UserRepositoryTest {
         List<User> users = (List<User>) userRepository.findAll();
 
         assertEquals(users.size(), 0);
+    }
+
+    @AfterEach
+    void drop() {
+        userRepository.deleteAll();
     }
 }
