@@ -1,5 +1,6 @@
 package com.crud.user.service;
 
+import com.crud.user.model.User;
 import com.crud.user.model.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -28,5 +29,12 @@ public class UserServiceTest {
     void shouldBeAbleToCallFindAllMethodOfUserRepository() {
         userService.getAllUsers();
         verify(userRepository, times(1)).findAll();
+    }
+
+    @Test
+    void shouldBeAbleToCallSaveMethodOfUserRepository() {
+        User ironman = new User(1, "ironman", 21);
+        userService.create(ironman);
+        verify(userRepository, times(1)).save(ironman);
     }
 }
