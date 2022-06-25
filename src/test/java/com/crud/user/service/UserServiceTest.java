@@ -37,4 +37,10 @@ public class UserServiceTest {
         userService.create(ironman);
         verify(userRepository, times(1)).save(ironman);
     }
+
+    @Test
+    void shouldBeAbleToCallDeleteMethodOfUserRepository() {
+        userService.deleteUserById(1);
+        verify(userRepository, times(1)).deleteById(1);
+    }
 }

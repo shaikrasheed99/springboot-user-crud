@@ -34,4 +34,13 @@ public class UserService {
     public User create(User user) {
         return userRepository.save(user);
     }
+
+    public boolean deleteUserById(int userId) {
+        try {
+            userRepository.deleteById(userId);
+            return true;
+        } catch (Exception exception) {
+            return false;
+        }
+    }
 }
