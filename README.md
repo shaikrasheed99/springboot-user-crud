@@ -1,4 +1,4 @@
-# Spring Boot CRUD TDD
+# Spring Boot User CRUD TDD
 
 ## Gradle based spring boot application which provide APIs to create, read, update and delete the users using test driven development.
 
