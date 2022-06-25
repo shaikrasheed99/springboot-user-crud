@@ -20,19 +20,19 @@ public class UserServiceTest {
     private UserService userService;
 
     @Test
-    void shouldBeAbleToCallFindAllByIdMethodOfUserRepository() {
+    void shouldBeAbleToCallFindAllByIdMethodOfUserRepositoryToGetUserDetails() {
         userService.getUserById(1);
         verify(userRepository, times(1)).findById(1);
     }
 
     @Test
-    void shouldBeAbleToCallFindAllMethodOfUserRepository() {
+    void shouldBeAbleToCallFindAllMethodOfUserRepositoryToGetAllUserDetails() {
         userService.getAllUsers();
         verify(userRepository, times(1)).findAll();
     }
 
     @Test
-    void shouldBeAbleToCallSaveMethodOfUserRepository() {
+    void shouldBeAbleToCallSaveMethodOfUserRepositoryToCreateAUser() {
         User ironman = new User(1, "ironman", 21);
         userService.create(ironman);
         verify(userRepository, times(1)).save(ironman);
@@ -46,7 +46,7 @@ public class UserServiceTest {
     }
 
     @Test
-    void shouldBeAbleToCallDeleteMethodOfUserRepository() {
+    void shouldBeAbleToCallDeleteMethodOfUserRepositoryToDeleteAUser() {
         userService.deleteUserById(1);
         verify(userRepository, times(1)).deleteById(1);
     }
