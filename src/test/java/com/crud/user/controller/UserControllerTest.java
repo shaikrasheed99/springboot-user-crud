@@ -13,8 +13,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = {UserController.class})
@@ -40,6 +42,20 @@ public class UserControllerTest {
                 .content(ironmanJson));
 
         result.andExpect(status().isCreated())
+                .andDo(print());
+    }
+
+    @Test
+    void shouldBeAbleToGetUserDetailsById() throws Exception {
+        User ironman = new User(1, "ironman", 21);
+        when(userService.getUserById(1)).thenReturn(ironman);
+
+        ResultActions result = mockMvc.perform(get("/users/{userId}", 1).contentType(MediaType.APPLICATION_JSON));
+
+        result.andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.name").value("ironman"))
+                .andExpect(jsonPath("$.age").value(21))
                 .andDo(print());
     }
 }
