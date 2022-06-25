@@ -3,6 +3,7 @@ package com.crud.user.controller;
 import com.crud.user.model.User;
 import com.crud.user.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,54 +31,46 @@ public class UserControllerTest {
     @InjectMocks
     private UserController userController;
 
+    private User ironman;
+
+    @BeforeEach
+    public void init() {
+        ironman = new User(1, "ironman", 21);
+    }
+
     @Test
     void shouldBeAbleToCreateUserDetails() throws Exception {
-        User ironman = new User(1, "ironman", 21);
         when(userService.create(ironman)).thenReturn(ironman);
         String ironmanJson = new ObjectMapper().writeValueAsString(ironman);
 
-        ResultActions result = mockMvc.perform(post("/users")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(ironmanJson));
+        ResultActions result = mockMvc.perform(post("/users").contentType(MediaType.APPLICATION_JSON).content(ironmanJson));
 
-        result.andExpect(status().isCreated())
-                .andDo(print());
+        result.andExpect(status().isCreated()).andDo(print());
     }
 
     @Test
     void shouldBeAbleToGetUserDetailsById() throws Exception {
-        User ironman = new User(1, "ironman", 21);
         when(userService.getUserById(1)).thenReturn(ironman);
 
-        ResultActions result = mockMvc.perform(get("/users/{userId}", 1)
-                .contentType(MediaType.APPLICATION_JSON));
+        ResultActions result = mockMvc.perform(get("/users/{userId}", 1).contentType(MediaType.APPLICATION_JSON));
 
-        result.andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.name").value("ironman"))
-                .andExpect(jsonPath("$.age").value(21))
-                .andDo(print());
+        result.andExpect(status().isOk()).andExpect(jsonPath("$.id").value(1)).andExpect(jsonPath("$.name").value("ironman")).andExpect(jsonPath("$.age").value(21)).andDo(print());
     }
 
     @Test
     void shouldBeAbleToUpdateUserDetails() throws Exception {
-        User ironman = new User(1, "ironman", 32);
         when(userService.update(ironman)).thenReturn(ironman);
         String ironmanJson = new ObjectMapper().writeValueAsString(ironman);
 
-        ResultActions result = mockMvc.perform(put("/users/{userId}", 1)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(ironmanJson));
+        ResultActions result = mockMvc.perform(put("/users/{userId}", 1).contentType(MediaType.APPLICATION_JSON).content(ironmanJson));
 
-        result.andExpect(status().isOk())
-                .andDo(print());
+        result.andExpect(status().isOk()).andDo(print());
     }
 
     @Test
     void shouldBeAbleToDeleteUserByUserId() throws Exception {
         ResultActions result = mockMvc.perform(delete("/users/{userId}", 1));
 
-        result.andExpect(status().isOk())
-                .andDo(print());
+        result.andExpect(status().isOk()).andDo(print());
     }
 }
