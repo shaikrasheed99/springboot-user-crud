@@ -30,7 +30,7 @@ public class UserControllerTest {
     private UserController userController;
 
     @Test
-    void shouldBeAbleToGetUserDetailsById() throws Exception {
+    void shouldBeAbleToCreateUserDetails() throws Exception {
         User ironman = new User(1, "ironman", 21);
         when(userService.create(ironman)).thenReturn(ironman);
         String ironmanJson = new ObjectMapper().writeValueAsString(ironman);
