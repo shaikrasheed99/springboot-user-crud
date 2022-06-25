@@ -39,12 +39,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public boolean deleteUserById(int userId) {
-        try {
-            userRepository.deleteById(userId);
-            return true;
-        } catch (Exception exception) {
-            return false;
-        }
+    public void deleteUserById(int userId) {
+        userRepository.deleteById(userId);
     }
 }
